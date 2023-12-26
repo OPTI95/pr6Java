@@ -1,9 +1,11 @@
 package com.example.Pr5.model;
+import com.example.Pr5.Role;
 import jakarta.persistence.*;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "polzovatels")
@@ -40,8 +42,10 @@ public class Polzovatel {
     @Column(name = "GENDER")
     private String gender;
 
-    @Column(name = "ROLE")
-    private String role;
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles;
 
     public Polzovatel(String email, String password, String firstName, String lastName) {
         this.email = email;
