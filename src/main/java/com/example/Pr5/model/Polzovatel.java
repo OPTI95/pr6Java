@@ -138,9 +138,7 @@ public class Polzovatel {
         this.gender = gender;
     }
 
-    public String getRole() {
-        return role;
-    }
+
 
     public void setRole(String role) {
         this.role = role;
